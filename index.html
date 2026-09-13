@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070913" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Mao's AI Team" />
+    <meta name="description" content="A personalized team of AI marketing specialists, ready to work in ChatGPT." />
+    <title>Mao's AI Marketing Team</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Mao's AI Marketing Team home">
+        <span class="brand-mark">M</span>
+        <span><strong>MAO'S</strong><small>AI TEAM HQ</small></span>
+      </a>
+      <div class="top-actions">
+        <span class="status"><i></i> Team online</span>
+        <button class="install-button" id="installButton"><span>↓</span> Install app</button>
+        <button class="icon-button" id="profileButton" aria-label="Edit business profile" title="Business profile">
+          <span>⚙</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow"><span>◆</span> YOUR ON-DEMAND GROWTH DEPARTMENT</div>
+        <h1>Your AI <span>Marketing Team</span></h1>
+        <p>Twenty-four specialists, one clear workflow. Choose the expert you need and launch a focused work session in ChatGPT.</p>
+        <div class="hero-actions">
+          <button class="primary-button" id="setupButton">Set up my business</button>
+          <button class="secondary-button" id="howButton">How it works <span>↗</span></button>
+        </div>
+        <div class="metrics" aria-label="Team metrics">
+          <div><strong>24</strong><span>AI specialists</span></div>
+          <div><strong>8</strong><span>Specialties</span></div>
+          <div><strong>24/7</strong><span>Ready on demand</span></div>
+        </div>
+      </section>
+
+      <section class="workspace" aria-labelledby="teamHeading">
+        <div class="workspace-head">
+          <div>
+            <p class="section-kicker">SPECIALIST DIRECTORY</p>
+            <h2 id="teamHeading">Meet your team</h2>
+          </div>
+          <div class="business-chip" id="businessChip"><span>◎</span><span id="businessChipText">Add your business profile</span></div>
+        </div>
+
+        <div class="search-wrap">
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" placeholder="Search by name, role, or marketing task..." autocomplete="off" />
+          <kbd>/</kbd>
+        </div>
+
+        <div class="filters" id="filters" role="group" aria-label="Filter specialists"></div>
+        <div class="team-grid" id="teamGrid"></div>
+        <div class="empty-state" id="emptyState" hidden>No specialists match that search. Try a different term.</div>
+      </section>
+
+      <section class="workflow">
+        <div class="workflow-copy">
+          <p class="section-kicker">SIMPLE BY DESIGN</p>
+          <h2>From idea to finished campaign</h2>
+          <p>Your business profile travels with every brief, so each specialist starts with the context that matters.</p>
+        </div>
+        <div class="steps">
+          <div><span>01</span><strong>Choose</strong><p>Pick the specialist for the job.</p></div>
+          <div><span>02</span><strong>Brief</strong><p>Answer a few focused questions.</p></div>
+          <div><span>03</span><strong>Create</strong><p>Review and refine in ChatGPT.</p></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="brand footer-brand"><span class="brand-mark">M</span><span><strong>MAO'S</strong><small>AI TEAM HQ</small></span></div>
+      <p>Strategy from AI. Judgment from you.</p>
+    </footer>
+
+    <dialog id="agentDialog" class="modal agent-modal">
+      <button class="modal-close" data-close="agentDialog" aria-label="Close">×</button>
+      <div id="agentModalContent"></div>
+    </dialog>
+
+    <dialog id="profileDialog" class="modal profile-modal">
+      <button class="modal-close" data-close="profileDialog" aria-label="Close">×</button>
+      <div class="modal-heading">
+        <span class="modal-label">BUSINESS PROFILE</span>
+        <h2>Give your team the right context</h2>
+        <p>Saved only in this browser. You can update it whenever your campaign changes.</p>
+      </div>
+      <form id="profileForm">
+        <div class="form-grid">
+          <label>Business or brand name<input name="brandName" placeholder="e.g. Halara Coffee Club" required /></label>
+          <label>Industry<input name="industry" placeholder="e.g. Café and specialty coffee" /></label>
+          <label class="wide">Products or services<textarea name="offer" rows="3" placeholder="What do you sell, and what makes it different?"></textarea></label>
+          <label class="wide">Ideal customers<textarea name="audience" rows="3" placeholder="Who should your marketing attract?"></textarea></label>
+          <label>Brand voice<input name="voice" placeholder="e.g. Warm, modern, approachable" /></label>
+          <label>Location or market<input name="market" placeholder="e.g. Pampanga, Philippines" /></label>
+          <label class="wide">Main marketing goal<textarea name="goal" rows="2" placeholder="e.g. Increase weekday store visits and repeat orders"></textarea></label>
+          <label class="wide">Primary channels<input name="channels" placeholder="e.g. Facebook, Instagram, TikTok" /></label>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="text-button" id="clearProfile">Clear profile</button>
+          <button type="submit" class="primary-button">Save business profile</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="howDialog" class="modal how-modal">
+      <button class="modal-close" data-close="howDialog" aria-label="Close">×</button>
+      <div class="modal-heading">
+        <span class="modal-label">QUICK START</span>
+        <h2>Your team is ready in three steps</h2>
+      </div>
+      <ol class="how-list">
+        <li><span>1</span><div><strong>Complete your business profile</strong><p>This gives every specialist your brand, customers, voice, and goals.</p></div></li>
+        <li><span>2</span><div><strong>Choose a specialist</strong><p>Preview what they do, then pick a suggested task or write your own.</p></div></li>
+        <li><span>3</span><div><strong>Launch in ChatGPT</strong><p>The dashboard copies a complete brief and opens ChatGPT. Paste if your browser does not insert it automatically.</p></div></li>
+      </ol>
+      <div class="notice"><span>✦</span><p><strong>You stay in control.</strong> Always review facts, prices, claims, and final creative before publishing.</p></div>
+    </dialog>
+
+    <dialog id="installDialog" class="modal install-modal">
+      <button class="modal-close" data-close="installDialog" aria-label="Close">×</button>
+      <div class="modal-heading">
+        <span class="modal-label">INSTALL THE APP</span>
+        <h2>Add Mao's AI Team to your phone</h2>
+        <p id="installLead">Install it on your home screen for a full-screen app experience.</p>
+      </div>
+      <div class="install-guide" id="installGuide"></div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
