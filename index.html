@@ -20,7 +20,6 @@
   <body>
     <div class="ambient ambient-one"></div>
     <div class="ambient ambient-two"></div>
-
     <header class="topbar">
       <a class="brand" href="#" aria-label="Mao's AI Marketing Team home">
         <span class="brand-mark">M</span>
@@ -29,15 +28,15 @@
       <div class="top-actions">
         <span class="status"><i></i> Online</span>
         <button class="install-button" id="installButton"><span>↓</span> Install</button>
+        <button class="ghost-button" id="rosterButton" type="button"><span id="rosterCount">12 on desk</span></button>
         <button class="icon-button" id="profileButton" aria-label="Edit business profile" title="Business profile">⚙</button>
       </div>
     </header>
-
     <main>
       <section class="hero">
         <div class="eyebrow">ON-DEMAND GROWTH DESK</div>
         <h1>Your AI <span>marketing desk</span></h1>
-        <p>Twelve specialists. One brief. Work happens in ChatGPT — you keep the judgment.</p>
+        <p>Turn roles on or off. One brief per job. Work happens in ChatGPT — you keep the judgment.</p>
         <div class="hero-actions">
           <button class="primary-button" id="setupButton">Set up business</button>
           <button class="secondary-button" id="howButton">How it works</button>
@@ -48,7 +47,6 @@
           <div><strong>1</strong><span>Brief per job</span></div>
         </div>
       </section>
-
       <section class="workspace" aria-labelledby="teamHeading">
         <div class="workspace-head">
           <div>
@@ -57,29 +55,24 @@
           </div>
           <button class="business-chip" id="businessChip" type="button"><span>◎</span><span id="businessChipText">Add business profile</span></button>
         </div>
-
         <div class="search-wrap">
           <span aria-hidden="true">⌕</span>
           <input id="searchInput" type="search" placeholder="Search role or task…" autocomplete="off" />
           <kbd>/</kbd>
         </div>
-
         <div class="filters" id="filters" role="group" aria-label="Filter specialists"></div>
         <div class="team-grid" id="teamGrid"></div>
         <div class="empty-state" id="emptyState" hidden>Nothing matches. Try another term.</div>
       </section>
     </main>
-
     <footer>
       <div class="brand footer-brand"><span class="brand-mark">M</span><span><strong>MAO'S</strong><small>AI TEAM</small></span></div>
       <p>Strategy from AI. Sign-off from you.</p>
     </footer>
-
     <dialog id="agentDialog" class="modal agent-modal">
       <button class="modal-close" data-close="agentDialog" aria-label="Close">×</button>
       <div id="agentModalContent"></div>
     </dialog>
-
     <dialog id="profileDialog" class="modal profile-modal">
       <button class="modal-close" data-close="profileDialog" aria-label="Close">×</button>
       <div class="modal-heading">
@@ -104,7 +97,6 @@
         </div>
       </form>
     </dialog>
-
     <dialog id="howDialog" class="modal how-modal">
       <button class="modal-close" data-close="howDialog" aria-label="Close">×</button>
       <div class="modal-heading">
@@ -118,7 +110,19 @@
       </ol>
       <div class="notice"><span>✦</span><p><strong>You approve the work.</strong> Check facts, prices, and claims before anything goes live.</p></div>
     </dialog>
-
+    <dialog id="rosterDialog" class="modal roster-modal">
+      <button class="modal-close" data-close="rosterDialog" aria-label="Close">×</button>
+      <div class="modal-heading">
+        <span class="modal-label">ROSTER</span>
+        <h2>Who sits on the desk</h2>
+        <p>Core roles stay lean. Optional extras stay off until you need them.</p>
+      </div>
+      <div class="roster-toolbar">
+        <button type="button" class="text-button" id="rosterCore">Core only</button>
+        <button type="button" class="text-button" id="rosterAll">Enable all</button>
+      </div>
+      <div class="roster-list" id="rosterList"></div>
+    </dialog>
     <dialog id="installDialog" class="modal install-modal">
       <button class="modal-close" data-close="installDialog" aria-label="Close">×</button>
       <div class="modal-heading">
@@ -128,7 +132,6 @@
       </div>
       <div class="install-guide" id="installGuide"></div>
     </dialog>
-
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <script src="app.js"></script>
   </body>
