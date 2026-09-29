@@ -114,7 +114,7 @@ function startAgent(id) {
   activeAgent = agents.find(a => a.id === id);
   if (!activeAgent) return;
   selectedTask = activeAgent.tasks[0];
-  launchInChatGPT(createPrompt(activeAgent.tasks[0]), `${activeAgent.name} starting`);
+  launchInChatGPT(createPrompt(activeAgent.tasks[0]), `${activeAgent.name} ready — press Enter in ChatGPT`);
 }
 function createPrompt(taskOverride = "") {
   const custom = document.querySelector("#customTask")?.value.trim();
@@ -134,13 +134,13 @@ function showToast(message) {
   toast.textContent = message;
   toast.classList.add("show");
   clearTimeout(showToast.timer);
-  showToast.timer = setTimeout(() => toast.classList.remove("show"), 2200);
+  showToast.timer = setTimeout(() => toast.classList.remove("show"), 2800);
 }
 function launchInChatGPT(prompt, label) {
   navigator.clipboard?.writeText(prompt).catch(() => {});
-  const payload = prompt.length > 6000 ? "I copied a specialist marketing brief. Ask me to paste it, then execute it." : prompt;
+  const payload = prompt.length > 6000 ? "The specialist brief is on my clipboard. Ask me to paste it, then execute it now." : prompt;
   window.open(`https://chatgpt.com/?q=${encodeURIComponent(payload)}`, "_blank", "noopener,noreferrer");
-  showToast(label);
+  showToast(label || "Brief loaded — press Enter to send");
 }
 function refreshDesk() { renderFilters(); renderAgents(); updateProfileUI(); }
 
@@ -234,7 +234,7 @@ agentDialog.addEventListener("click", async e => {
     document.querySelector("#customTask").value = "";
   }
   if (e.target.id === "copyAgent") await copyPrompt();
-  if (e.target.id === "launchAgent") launchInChatGPT(createPrompt(), "Opening in ChatGPT");
+  if (e.target.id === "launchAgent") launchInChatGPT(createPrompt(), "Brief loaded — press Enter to send");
 });
 refreshDesk();
 if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));
