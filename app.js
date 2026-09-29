@@ -53,7 +53,7 @@ function renderAgents() {
     [a.name, a.title, a.category, a.description, ...a.tasks].join(" ").toLowerCase().includes(term)
   );
   teamGrid.innerHTML = visible.map(a => `
-    <article class="agent-card" style="--agent:${a.color}" data-agent="${a.id}" tabindex="0" aria-label="Open ${a.name}">
+    <article class="agent-card" style="--agent:${a.color}" data-agent="${a.id}" tabindex="0" aria-label="Start ${a.name}">
       <div class="agent-top"><span class="tag">${a.category}</span>${botMarkup()}</div>
       <div class="agent-info">
         <span class="agent-role">${a.title}${a.optional ? " · optional" : ""}</span>
@@ -110,6 +110,12 @@ function openAgent(id) {
     </div>`;
   agentDialog.showModal();
 }
+function startAgent(id) {
+  activeAgent = agents.find(a => a.id === id);
+  if (!activeAgent) return;
+  selectedTask = activeAgent.tasks[0];
+  launchInChatGPT(createPrompt(activeAgent.tasks[0]), `${activeAgent.name} starting`);
+}
 function createPrompt(taskOverride = "") {
   const custom = document.querySelector("#customTask")?.value.trim();
   const task = taskOverride || custom || selectedTask;
@@ -145,21 +151,18 @@ filters.addEventListener("click", e => {
   renderFilters(); renderAgents();
 });
 teamGrid.addEventListener("click", e => {
-  const quick = e.target.closest("[data-quick]");
-  if (quick) {
-    activeAgent = agents.find(a => a.id === quick.dataset.quick);
-    selectedTask = "";
-    launchInChatGPT(createPrompt(`Start a ${activeAgent.title} session. State what you will produce, offer three task options, then wait for my choice.`), `${activeAgent.name} opening in ChatGPT`);
+  const options = e.target.closest("[data-options]");
+  if (options) {
+    openAgent(options.dataset.options);
     return;
   }
-  const options = e.target.closest("[data-options]");
   const card = e.target.closest("[data-agent]");
-  if (options) openAgent(options.dataset.options);
-  else if (card) openAgent(card.dataset.agent);
+  if (card) startAgent(card.dataset.agent);
 });
 teamGrid.addEventListener("keydown", e => {
   if ((e.key === "Enter" || e.key === " ") && e.target.matches("[data-agent]")) {
-    e.preventDefault(); openAgent(e.target.dataset.agent);
+    e.preventDefault();
+    startAgent(e.target.dataset.agent);
   }
 });
 searchInput.addEventListener("input", renderAgents);
