@@ -32,10 +32,10 @@ const profileForm = document.querySelector("#profileForm");
 const toast = document.querySelector("#toast");
 
 function botMarkup() {
-  return `<div class="bot" aria-hidden="true"><i class="bot-antenna"></i><div class="bot-head"><div class="bot-face"><i></i><i></i></div></div><div class="bot-body"></div></div>`;
+  return `<div class="bot" aria-hidden="true"><span class="bot-orb"><i></i><i></i></span></div>`;
 }
 function escapeHtml(str) {
-  return String(str).replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+  return String(str).replace(/[&<>"']/g, ch => ({ "&": "&", "<": "<", ">": ">", '"': """, "'": "&#39;" }[ch]));
 }
 function renderFilters() {
   const cats = categoryList();
