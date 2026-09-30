@@ -1,4 +1,4 @@
-const CACHE = "mao-ai-team-github-v3";
+const CACHE = "mao-ai-team-github-v4";
 const BASE = "/ai-marketing-team/";
 const APP_SHELL = [
   BASE,
@@ -6,33 +6,55 @@ const APP_SHELL = [
   `${BASE}styles.css`,
   `${BASE}agents.js`,
   `${BASE}app.js`,
-  `${BASE}manifest.webmanifest`,
-  `${BASE}icon-192.png`,
-  `${BASE}icon-512.png`,
-  `${BASE}apple-touch-icon.png`
+  `${BASE}manifest.webmanifest`
 ];
 
 self.addEventListener("install", event => {
-  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(APP_SHELL)));
-  self.skipWaiting();
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE);
+    await Promise.all(
+      APP_SHELL.map(url => cache.add(url).catch(() => {}))
+    );
+    await self.skipWaiting();
+  })());
 });
 
 self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key))))
-  );
-  self.clients.claim();
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)));
+    await self.clients.claim();
+  })());
 });
 
+function isPageRequest(request) {
+  return request.mode === "navigate" || (request.headers.get("accept") || "").includes("text/html");
+}
+
 self.addEventListener("fetch", event => {
-  if (event.request.method !== "GET") return;
-  event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        const copy = response.clone();
-        caches.open(CACHE).then(cache => cache.put(event.request, copy));
-        return response;
-      })
-      .catch(() => caches.match(event.request).then(hit => hit || caches.match(`${BASE}index.html`)))
-  );
+  const request = event.request;
+  if (request.method !== "GET") return;
+  const url = new URL(request.url);
+  if (url.origin !== self.location.origin) return;
+
+  event.respondWith((async () => {
+    try {
+      const fresh = await fetch(request);
+      if (fresh && fresh.ok) {
+        const cache = await caches.open(CACHE);
+        cache.put(url.pathname === `${BASE}` || url.pathname === `${BASE}index.html` ? `${BASE}index.html` : request, fresh.clone());
+      }
+      return fresh;
+    } catch {
+      const cached = await caches.match(request) || await caches.match(url.pathname);
+      if (cached) return cached;
+      if (url.pathname.endsWith("agents.js") || url.pathname.endsWith("app.js")) {
+        return caches.match(`${BASE}${url.pathname.split("/").pop()}`);
+      }
+      if (isPageRequest(request)) {
+        return (await caches.match(`${BASE}index.html`)) || Response.error();
+      }
+      return Response.error();
+    }
+  })());
 });
