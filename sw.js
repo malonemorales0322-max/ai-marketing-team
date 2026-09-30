@@ -1,4 +1,4 @@
-const CACHE = "mao-ai-team-github-v4";
+const CACHE = "mao-ai-team-github-v6";
 const BASE = "/ai-marketing-team/";
 const APP_SHELL = [
   BASE,
