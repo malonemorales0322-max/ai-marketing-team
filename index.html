@@ -4,10 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#070913" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Mao's AI Team" />
-    <meta name="description" content="A tight AI marketing team. Pick a specialist, brief them, work in ChatGPT." />
     <title>Mao's AI Marketing Team</title>
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
@@ -15,21 +11,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=3" />
+    <link rel="stylesheet" href="styles.css?v=4" />
   </head>
   <body>
     <div class="ambient ambient-one"></div>
     <div class="ambient ambient-two"></div>
     <header class="topbar">
-      <a class="brand" href="#" aria-label="Mao's AI Marketing Team home">
-        <span class="brand-mark">M</span>
-        <span><strong>MAO'S</strong><small>AI TEAM</small></span>
-      </a>
+      <a class="brand" href="#"><span class="brand-mark">M</span><span><strong>MAO'S</strong><small>AI TEAM</small></span></a>
       <div class="top-actions">
         <span class="status"><i></i> Online</span>
         <button class="install-button" id="installButton"><span>↓</span> Install</button>
         <button class="ghost-button" id="rosterButton" type="button"><span id="rosterCount">12 on desk</span></button>
-        <button class="icon-button" id="profileButton" aria-label="Edit business profile" title="Business profile">⚙</button>
+        <button class="icon-button" id="profileButton" aria-label="Edit business profile">⚙</button>
       </div>
     </header>
     <main>
@@ -41,18 +34,15 @@
           <button class="primary-button" id="setupButton">Set up business</button>
           <button class="secondary-button" id="howButton">How it works</button>
         </div>
-        <div class="metrics" aria-label="Team metrics">
+        <div class="metrics">
           <div><strong id="specialistCount">12</strong><span>Specialists</span></div>
           <div><strong>6</strong><span>Desks</span></div>
           <div><strong>1</strong><span>Brief per job</span></div>
         </div>
       </section>
-      <section class="workspace" aria-labelledby="teamHeading">
+      <section class="workspace">
         <div class="workspace-head">
-          <div>
-            <p class="section-kicker">DESK</p>
-            <h2 id="teamHeading">Pick a specialist</h2>
-          </div>
+          <div><p class="section-kicker">DESK</p><h2>Pick a specialist</h2></div>
           <button class="business-chip" id="businessChip" type="button"><span>◎</span><span id="businessChipText">Add business profile</span></button>
         </div>
         <div class="search-wrap">
@@ -60,8 +50,21 @@
           <input id="searchInput" type="search" placeholder="Search role or task…" autocomplete="off" />
           <kbd>/</kbd>
         </div>
-        <div class="filters" id="filters" role="group" aria-label="Filter specialists"></div>
-        <div class="team-grid" id="teamGrid"></div>
+        <div class="filters" id="filters"></div>
+        <div class="team-grid" id="teamGrid">
+          <article class="agent-card" style="--agent:#ffb23e"><div class="agent-top"><span class="tag">Strategy</span><div class="bot"><span class="bot-orb"><i></i><i></i></span></div></div><div class="agent-info"><span class="agent-role">Marketing Director</span><h3>Maya</h3><p>Turns a goal into a 30-day plan.</p></div></article>
+          <article class="agent-card" style="--agent:#8d73ff"><div class="agent-top"><span class="tag">Research</span><div class="bot"><span class="bot-orb"><i></i><i></i></span></div></div><div class="agent-info"><span class="agent-role">Market Researcher</span><h3>Rex</h3><p>Maps customers and competitors.</p></div></article>
+          <article class="agent-card" style="--agent:#76cd75"><div class="agent-top"><span class="tag">Research</span><div class="bot"><span class="bot-orb"><i></i><i></i></span></div></div><div class="agent-info"><span class="agent-role">SEO Strategist</span><h3>Quinn</h3><p>Plans useful search pages.</p></div></article>
+          <article class="agent-card" style="--agent:#71da67"><div class="agent-top"><span class="tag">Content</span><div class="bot"><span class="bot-orb"><i></i><i></i></span></div></div><div class="agent-info"><span class="agent-role">Content Planner</span><h3>Penelope</h3><p>Calendars with pillars and CTAs.</p></div></article>
+          <article class="agent-card" style="--agent:#ff6d65"><div class="agent-top"><span class="tag">Content</span><div class="bot"><span class="bot-orb"><i></i><i></i></span></div></div><div class="agent-info"><span class="agent-role">Copy Chief</span><h3>Cora</h3><p>Specific, human copy.</p></div></article>
+          <article class="agent-card" style="--agent:#f4d24d"><div class="agent-top"><span class="tag">Ads</span><div class="bot"><span class="bot-orb"><i></i><i></i></span></div></div><div class="agent-info"><span class="agent-role">Performance Ads</span><h3>Sasha</h3><p>Angles, copy, and a test plan.</p></div></article>
+          <article class="agent-card" style="--agent:#58c8ff"><div class="agent-top"><span class="tag">Creative</span><div class="bot"><span class="bot-orb"><i></i><i></i></span></div></div><div class="agent-info"><span class="agent-role">Short-form Video</span><h3>Riley</h3><p>Reels with hooks and a shot list.</p></div></article>
+          <article class="agent-card" style="--agent:#eb67c8"><div class="agent-top"><span class="tag">Creative</span><div class="bot"><span class="bot-orb"><i></i><i></i></span></div></div><div class="agent-info"><span class="agent-role">Art Director</span><h3>Vera</h3><p>Visual concepts and prompts.</p></div></article>
+          <article class="agent-card" style="--agent:#52d9c5"><div class="agent-top"><span class="tag">Content</span><div class="bot"><span class="bot-orb"><i></i><i></i></span></div></div><div class="agent-info"><span class="agent-role">Email & Lifecycle</span><h3>Emmy</h3><p>Welcome, promo, and win-back flows.</p></div></article>
+          <article class="agent-card" style="--agent:#4795ff"><div class="agent-top"><span class="tag">Strategy</span><div class="bot"><span class="bot-orb"><i></i><i></i></span></div></div><div class="agent-info"><span class="agent-role">Funnel Architect</span><h3>Felix</h3><p>Shortest path to purchase.</p></div></article>
+          <article class="agent-card" style="--agent:#ff5d8f"><div class="agent-top"><span class="tag">Sales</span><div class="bot"><span class="bot-orb"><i></i><i></i></span></div></div><div class="agent-info"><span class="agent-role">Sales Conversations</span><h3>Stella</h3><p>Replies, DMs, objections.</p></div></article>
+          <article class="agent-card" style="--agent:#50b6ff"><div class="agent-top"><span class="tag">Analytics</span><div class="bot"><span class="bot-orb"><i></i><i></i></span></div></div><div class="agent-info"><span class="agent-role">Analytics</span><h3>Alex</h3><p>Numbers into the next test.</p></div></article>
+        </div>
         <div class="empty-state" id="emptyState" hidden>Nothing matches. Try another term.</div>
       </section>
     </main>
@@ -69,27 +72,20 @@
       <div class="brand footer-brand"><span class="brand-mark">M</span><span><strong>MAO'S</strong><small>AI TEAM</small></span></div>
       <p>Strategy from AI. Sign-off from you.</p>
     </footer>
-    <dialog id="agentDialog" class="modal agent-modal">
-      <button class="modal-close" data-close="agentDialog" aria-label="Close">×</button>
-      <div id="agentModalContent"></div>
-    </dialog>
+    <dialog id="agentDialog" class="modal agent-modal"><button class="modal-close" data-close="agentDialog">×</button><div id="agentModalContent"></div></dialog>
     <dialog id="profileDialog" class="modal profile-modal">
-      <button class="modal-close" data-close="profileDialog" aria-label="Close">×</button>
-      <div class="modal-heading">
-        <span class="modal-label">PROFILE</span>
-        <h2>Context for every brief</h2>
-        <p>Stored in this browser only.</p>
-      </div>
+      <button class="modal-close" data-close="profileDialog">×</button>
+      <div class="modal-heading"><span class="modal-label">PROFILE</span><h2>Context for every brief</h2><p>Stored in this browser only.</p></div>
       <form id="profileForm">
         <div class="form-grid">
-          <label>Brand name<input name="brandName" placeholder="Halara Coffee Club" required /></label>
-          <label>Industry<input name="industry" placeholder="Specialty coffee" /></label>
-          <label class="wide">Offer<textarea name="offer" rows="2" placeholder="What you sell and why it wins"></textarea></label>
-          <label class="wide">Customers<textarea name="audience" rows="2" placeholder="Who should buy"></textarea></label>
-          <label>Voice<input name="voice" placeholder="Warm, direct" /></label>
-          <label>Market<input name="market" placeholder="Pampanga, Philippines" /></label>
-          <label class="wide">Goal<textarea name="goal" rows="2" placeholder="The result that matters this month"></textarea></label>
-          <label class="wide">Channels<input name="channels" placeholder="Facebook, Instagram, TikTok" /></label>
+          <label>Brand name<input name="brandName" required /></label>
+          <label>Industry<input name="industry" /></label>
+          <label class="wide">Offer<textarea name="offer" rows="2"></textarea></label>
+          <label class="wide">Customers<textarea name="audience" rows="2"></textarea></label>
+          <label>Voice<input name="voice" /></label>
+          <label>Market<input name="market" /></label>
+          <label class="wide">Goal<textarea name="goal" rows="2"></textarea></label>
+          <label class="wide">Channels<input name="channels" /></label>
         </div>
         <div class="form-actions">
           <button type="button" class="text-button" id="clearProfile">Clear</button>
@@ -98,25 +94,17 @@
       </form>
     </dialog>
     <dialog id="howDialog" class="modal how-modal">
-      <button class="modal-close" data-close="howDialog" aria-label="Close">×</button>
-      <div class="modal-heading">
-        <span class="modal-label">WORKFLOW</span>
-        <h2>Three steps</h2>
-      </div>
+      <button class="modal-close" data-close="howDialog">×</button>
+      <div class="modal-heading"><span class="modal-label">WORKFLOW</span><h2>Three steps</h2></div>
       <ol class="how-list">
-        <li><span>1</span><div><strong>Save a profile</strong><p>Brand, offer, customers, goal.</p></div></li>
-        <li><span>2</span><div><strong>Pick one specialist</strong><p>Choose a task or write your own.</p></div></li>
-        <li><span>3</span><div><strong>Run it in ChatGPT</strong><p>Brief copies automatically. Paste if it does not.</p></div></li>
+        <li><span>1</span><div><strong>Save a profile</strong></div></li>
+        <li><span>2</span><div><strong>Pick one specialist</strong></div></li>
+        <li><span>3</span><div><strong>Run the brief</strong></div></li>
       </ol>
-      <div class="notice"><span>✦</span><p><strong>You approve the work.</strong> Check facts, prices, and claims before anything goes live.</p></div>
     </dialog>
     <dialog id="rosterDialog" class="modal roster-modal">
-      <button class="modal-close" data-close="rosterDialog" aria-label="Close">×</button>
-      <div class="modal-heading">
-        <span class="modal-label">ROSTER</span>
-        <h2>Who sits on the desk</h2>
-        <p>Core roles stay lean. Optional extras stay off until you need them.</p>
-      </div>
+      <button class="modal-close" data-close="rosterDialog">×</button>
+      <div class="modal-heading"><span class="modal-label">ROSTER</span><h2>Who sits on the desk</h2></div>
       <div class="roster-toolbar">
         <button type="button" class="text-button" id="rosterCore">Core only</button>
         <button type="button" class="text-button" id="rosterAll">Enable all</button>
@@ -124,16 +112,12 @@
       <div class="roster-list" id="rosterList"></div>
     </dialog>
     <dialog id="installDialog" class="modal install-modal">
-      <button class="modal-close" data-close="installDialog" aria-label="Close">×</button>
-      <div class="modal-heading">
-        <span class="modal-label">INSTALL</span>
-        <h2>Add to home screen</h2>
-        <p id="installLead">Full-screen, one tap.</p>
-      </div>
+      <button class="modal-close" data-close="installDialog">×</button>
+      <div class="modal-heading"><span class="modal-label">INSTALL</span><h2>Add to home screen</h2></div>
       <div class="install-guide" id="installGuide"></div>
     </dialog>
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script src="agents.js?v=3"></script>
-    <script src="app.js?v=3"></script>
+    <div class="toast" id="toast"></div>
+    <script src="agents.js?v=4"></script>
+    <script src="app.js?v=4"></script>
   </body>
 </html>
