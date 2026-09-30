@@ -79,7 +79,8 @@ function botMarkup(agent) {
   return `<div class="bot" aria-hidden="true">${portraitSvg(a)}</div>`;
 }
 function escapeHtml(str) {
-  return String(str).replace(/[&<>"']/g, ch => ({ "&": "&", "<": "<", ">": ">", '"': """, "'": "&#39;" }[ch]));
+  const map = {"&": "&"+"amp;", "<": "&"+"lt;", ">": "&"+"gt;", '"': "&"+"quot;", "'": "&#39;"};
+  return String(str).replace(/[&<>"']/g, ch => map[ch]);
 }
 function renderFilters() {
   const cats = categoryList();
