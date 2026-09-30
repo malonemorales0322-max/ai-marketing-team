@@ -63,14 +63,23 @@ main { max-width: 1240px; margin: auto; padding: 0 24px; }
 .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
 .agent-card { position: relative; min-height: 340px; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: linear-gradient(180deg, color-mix(in srgb, var(--agent) 31%, #101323), #101322 54%); transition: transform .22s, border-color .22s, box-shadow .22s; cursor: pointer; display: flex; flex-direction: column; }
 .agent-card:hover { transform: translateY(-5px); border-color: color-mix(in srgb, var(--agent) 60%, white); box-shadow: 0 20px 50px rgba(0,0,0,.28); }
-.agent-card:active { transform: translateY(-1px) scale(.99); }
 .agent-top { min-height: 172px; display: grid; place-items: center; position: relative; perspective: 520px; }
 .tag { position: absolute; top: 15px; left: 15px; border: 1px solid rgba(255,255,255,.15); background: rgba(5,7,16,.35); color: #f0f1f7; padding: 5px 8px; border-radius: 7px; font-size: 8px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 
 .bot {
   width: 112px; height: 112px; position: relative;
-  transform-style: preserve-3d;
-  filter: drop-shadow(0 16px 18px rgba(0,0,0,.28));
+  border-radius: 50%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 38% 48%, #1b1a22 0 7px, transparent 8px),
+    radial-gradient(circle at 62% 48%, #1b1a22 0 7px, transparent 8px),
+    radial-gradient(circle at 36% 45%, #fff 0 3px, transparent 4px),
+    radial-gradient(circle at 60% 45%, #fff 0 3px, transparent 4px),
+    radial-gradient(circle at 50% 62%, #f3c7a3 0 26px, transparent 27px),
+    radial-gradient(circle at 50% 36%, #2a1a14 0 34px, transparent 35px),
+    radial-gradient(circle at 32% 28%, rgba(255,255,255,.45), transparent 36%),
+    radial-gradient(circle at 50% 50%, var(--agent), color-mix(in srgb, var(--agent) 55%, #111));
+  box-shadow: inset 0 -10px 16px rgba(0,0,0,.2), 0 16px 18px rgba(0,0,0,.28);
   animation: god-float 4.6s ease-in-out infinite;
 }
 .bot::after {
@@ -88,32 +97,12 @@ main { max-width: 1240px; margin: auto; padding: 0 24px; }
   position: relative; z-index: 1;
   animation: god-glow 3.8s ease-in-out infinite;
 }
-.god-face::after {
-  content: "";
-  position: absolute; inset: 0;
-  border-radius: 50%;
-  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.38) 50%, transparent 65%);
-  transform: translateX(-120%);
-  pointer-events: none;
-}
-.agent-card:hover .bot {
-  animation: god-hover 1.1s ease-in-out infinite alternate;
-  filter: drop-shadow(6px 20px 16px rgba(0,0,0,.34));
-}
-.agent-card:hover .bot::after { opacity: .9; animation-duration: 1.4s; }
-.agent-card:hover .god-face::after { animation: god-shine .9s ease forwards; }
+.agent-card:hover .bot { animation: god-hover 1.1s ease-in-out infinite alternate; }
 .agent-card:active .bot { animation: none; transform: scale(.94) translateY(2px); }
 .agent-modal-header .bot { transform: scale(.72); transform-origin: left center; margin: -6px 0 8px; animation: god-float 5s ease-in-out infinite; }
-
-.team-grid .agent-card:nth-child(4n+1) .bot { animation-delay: 0s; }
 .team-grid .agent-card:nth-child(4n+2) .bot { animation-delay: .35s; }
 .team-grid .agent-card:nth-child(4n+3) .bot { animation-delay: .7s; }
 .team-grid .agent-card:nth-child(4n+4) .bot { animation-delay: 1.05s; }
-.team-grid .agent-card:nth-child(4n+1) .god-face { animation-delay: .1s; }
-.team-grid .agent-card:nth-child(4n+2) .god-face { animation-delay: .45s; }
-.team-grid .agent-card:nth-child(4n+3) .god-face { animation-delay: .8s; }
-.team-grid .agent-card:nth-child(4n+4) .god-face { animation-delay: 1.15s; }
-
 @keyframes god-float {
   0%, 100% { transform: translateY(0) rotate(-1.4deg); }
   50% { transform: translateY(-7px) rotate(1.6deg); }
@@ -130,11 +119,6 @@ main { max-width: 1240px; margin: auto; padding: 0 24px; }
   0%, 100% { transform: scale(.96); opacity: .28; }
   50% { transform: scale(1.06); opacity: .7; }
 }
-@keyframes god-shine {
-  from { transform: translateX(-120%); }
-  to { transform: translateX(120%); }
-}
-
 .agent-info { flex: 1; position: relative; padding: 2px 19px 18px; display: flex; flex-direction: column; }
 .agent-role { color: var(--agent); font-size: 9px; letter-spacing: .13em; font-weight: 800; text-transform: uppercase; }
 .agent-info h3 { font: 700 20px "Space Grotesk"; margin: 7px 0 8px; }
@@ -175,6 +159,5 @@ footer { max-width: 1240px; margin: auto; padding: 30px 24px 45px; border-top: 1
 @media (max-width: 740px) { .team-grid { grid-template-columns: repeat(2,1fr); } }
 @media (max-width: 500px) { .team-grid { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) {
-  .bot, .god-face, .bot::after, .god-face::after { animation: none !important; }
-  .agent-card:hover .bot { transform: none; }
+  .bot, .god-face, .bot::after { animation: none !important; }
 }
